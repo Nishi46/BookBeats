@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBeats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>BookBeats</h1>
+        <p>Find the perfect music based on your favorite books!</p>
+        <form id="bookForm">
+            <input type="text" id="bookQuery" placeholder="Enter book title..." required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="recommendations" style="display:none;">
+            <h2>Recommended Playlist</h2>
+            <p id="playlistName"></p>
+            <a id="playlistLink" target="_blank">Listen on Spotify</a>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
