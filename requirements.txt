@@ -1,5 +1,7 @@
-flask
-requests
+
 nltk
-python-dotenv
-base64
+Flask==2.0.2
+requests==2.26.0
+python-dotenv==0.19.2  # If using .env for credentials
+pyspellchecker
+fuzzywuzzy

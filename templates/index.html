@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookBeats</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Book to Song Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>BookBeats</h1>
-        <p>Find the perfect music based on your favorite books!</p>
-        <form id="bookForm">
-            <input type="text" id="bookQuery" placeholder="Enter book title..." required>
-            <button type="submit">Search</button>
+        <h1>Find Songs Based on a Book</h1>
+        <form method="POST" action="/">
+            <input type="text" name="book_name" placeholder="Enter a book title" required>
+            <button type="submit">Get Recommendations</button>
         </form>
-        <div id="recommendations" style="display:none;">
-            <h2>Recommended Playlist</h2>
-            <p id="playlistName"></p>
-            <a id="playlistLink" target="_blank">Listen on Spotify</a>
-        </div>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if book_name %}
+            <h2>Recommendations for: {{ book_name }}</h2>
+            <ul>
+                {% for song in recommendations %}
+                    <li>
+                        <strong>{{ song.name }}</strong> by {{ song.artist }}<br>
+                        Themes: {{ song.matched_themes | join(", ") }}<br>
+                        <a href="{{ song.url }}" target="_blank">Listen on Spotify</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
